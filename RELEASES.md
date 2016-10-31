@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.3.0 (31 October 2016)
+* Adds PHP 7 compatibility
+
 ## v1.2.0 (30 September 2016)
 * First release of Zamzar fork of `php-activerecord/php-activerecord`
 * Added a simple, file-based implementation of PHP AR cache for installs without memcached [#2](https://github.com/zamzar/php-activerecord/issues/2)
