@@ -1,7 +1,7 @@
 install: composer install --prefer-source --dev
 
 before_script:
-  - echo 'extension = "memcache.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo 'extension = "memcached.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - mysql -e "USE mysql;UPDATE user SET password=PASSWORD('password') WHERE user='root';FLUSH PRIVILEGES;"
   - mysql -e 'CREATE DATABASE phpar_test;'
   - psql -c 'CREATE DATABASE phpar_test;' -U postgres
