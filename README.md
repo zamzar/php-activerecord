@@ -1,6 +1,6 @@
 # PHP ActiveRecord - Version 1.0 #
 
-[![Build Status](https://travis-ci.org/louismrose/php-activerecord.png?branch=master)](https://travis-ci.org/louismrose/php-activerecord)
+[![Build Status](https://travis-ci.org/zamzar/php-activerecord.png?branch=master)](https://travis-ci.org/zamzar/php-activerecord)
 
 by
 
