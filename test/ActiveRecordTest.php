@@ -154,11 +154,11 @@ class ActiveRecordTest extends DatabaseTest
 		$venue->reload();
 		$this->assert_equals('NY', $venue->state);
 	}
-	
+
 	public function test_reload_protected_attribute()
 	{
 		$book = BookAttrAccessible::find(1);
-	
+
 		$book->name = "Should not stay";
 		$book->reload();
 		$this->assert_not_equals("Should not stay", $book->name);
@@ -337,7 +337,7 @@ class ActiveRecordTest extends DatabaseTest
 		$this->assert_equals($original+1,Author::count());
 		$this->assert_true($ret);
 	}
-	
+
 	public function test_transaction_committed_when_returning_true()
 	{
 		$original = Author::count();
@@ -345,21 +345,21 @@ class ActiveRecordTest extends DatabaseTest
 		$this->assert_equals($original+1,Author::count());
 		$this->assert_true($ret);
 	}
-	
+
 	public function test_transaction_rolledback_by_returning_false()
 	{
 		$original = Author::count();
-		
+
 		$ret = Author::transaction(function()
 		{
 			Author::create(array("name" => "blah"));
 			return false;
 		});
-		
+
 		$this->assert_equals($original,Author::count());
 		$this->assert_false($ret);
 	}
-	
+
 	public function test_transaction_rolledback_by_throwing_exception()
 	{
 		$original = Author::count();
