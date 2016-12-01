@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.3.1 (1 December 2016)
+* Fixed a bug in which PDO exceptions thrown when starting a transactions would not be reported correctly [#3](https://github.com/zamzar/php-activerecord/issues/3)
+
 ## v1.3.0 (31 October 2016)
 * Adds PHP 7 compatibility
 
