@@ -399,6 +399,14 @@ abstract class Connection
 	}
 
 	/**
+	 * Indicates whether or not this connection is currently executing within a DB transaction
+	 */
+	public function inTransaction()
+	{
+		return $this->connection->inTransaction();
+	}
+
+	/**
 	 * Tells you if this adapter supports sequences or not.
 	 *
 	 * @return boolean

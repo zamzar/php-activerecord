@@ -1852,7 +1852,9 @@ class Model
 		}
 		catch (\Exception $e)
 		{
-			$connection->rollback();
+			if ($connection->inTransaction())
+				$connection->rollback();
+
 			throw $e;
 		}
 		return true;

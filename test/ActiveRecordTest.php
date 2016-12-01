@@ -382,6 +382,28 @@ class ActiveRecordTest extends DatabaseTest
 		$this->assert_equals($original,Author::count());
 	}
 
+	public function test_nested_transaction_rolledback()
+	{
+		$original = Author::count();
+		$exception = null;
+
+		try
+		{
+			Author::transaction(function()
+			{
+				Author::create(array("name" => "blah"));
+				Author::transaction(function() { Author::create(array("name" => "nested")); });
+			});
+		}
+		catch (Exception $e)
+		{
+			$exception = $e;
+		}
+
+		$this->assert_equals("There is already an active transaction", $exception->getMessage());
+		$this->assert_equals($original,Author::count());
+	}
+
 	public function test_delegate()
 	{
 		$event = Event::first();
