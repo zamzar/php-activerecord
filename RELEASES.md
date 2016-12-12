@@ -1,6 +1,6 @@
 # Release Notes
 
-## v1.4.0 (1 December 2016)
+## v1.4.0 (12 December 2016)
 * Removes PHP ActiveRecord's autoloader, as Composer usage is now widespread [#5](https://github.com/zamzar/php-activerecord/issues/5)
 
 ## v1.3.1 (1 December 2016)
