@@ -18,6 +18,7 @@
  **/
 
 require_once 'vendor/autoload.php';
+require_once __DIR__ .'/model_autoloader.php';
 
 require_once 'SnakeCase_PHPUnit_Framework_TestCase.php';
 
@@ -38,7 +39,6 @@ if (getenv('LOG') !== 'false')
 
 ActiveRecord\Config::initialize(function($cfg)
 {
-	$cfg->set_model_directory(realpath(__DIR__ . '/../models'));
 	$cfg->set_connections(array(
 		'mysql'  => getenv('PHPAR_MYSQL')  ?: 'mysql://test:test@127.0.0.1/test',
 		'pgsql'  => getenv('PHPAR_PGSQL')  ?: 'pgsql://test:test@127.0.0.1/test',

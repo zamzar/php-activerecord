@@ -26,7 +26,6 @@ class Config extends Singleton
 	 *
 	 * <code>
 	 * ActiveRecord\Config::initialize(function($cfg) {
-	 *   $cfg->set_model_directory('/your/app/models');
 	 *   $cfg->set_connections(array(
 	 *     'development' => 'mysql://user:pass@development.com/awesome_development',
 	 *     'production' => 'mysql://user:pass@production.com/awesome_production'));
@@ -49,14 +48,6 @@ class Config extends Singleton
 	 * @var array
 	 */
 	private $connections = array();
-
-	/**
-	 * Directory for the auto_loading of model classes.
-	 *
-	 * @see activerecord_autoload
-	 * @var string
-	 */
-	private $model_directory;
 
 	/**
 	 * Switch for logging.
@@ -86,7 +77,6 @@ class Config extends Singleton
 	 *
 	 * <code>
 	 * ActiveRecord\Config::initialize(function($cfg) {
-	 *   $cfg->set_model_directory('/path/to/your/model_directory');
 	 *   $cfg->set_connections(array(
 	 *     'development' => 'mysql://username:password@127.0.0.1/database_name'));
 	 * });
@@ -96,7 +86,6 @@ class Config extends Singleton
 	 *
 	 * <code>
 	 * $cfg = ActiveRecord\Config::instance();
-	 * $cfg->set_model_directory('/path/to/your/model_directory');
 	 * $cfg->set_connections(array('development' =>
   	 *   'mysql://username:password@localhost/database_name'));
 	 * </code>
@@ -187,31 +176,6 @@ class Config extends Singleton
 	public function set_default_connection($name)
 	{
 		$this->default_connection = $name;
-	}
-
-	/**
-	 * Sets the directory where models are located.
-	 *
-	 * @param string $dir Directory path containing your models
-	 * @return void
-	 */
-	public function set_model_directory($dir)
-	{
-		$this->model_directory = $dir;
-	}
-
-	/**
-	 * Returns the model directory.
-	 *
-	 * @return string
-	 * @throws ConfigException if specified directory was not found
-	 */
-	public function get_model_directory()
-	{
-		if ($this->model_directory && !file_exists($this->model_directory))
-			throw new ConfigException('Invalid or non-existent directory: '.$this->model_directory);
-
-		return $this->model_directory;
 	}
 
 	/**

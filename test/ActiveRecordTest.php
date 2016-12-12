@@ -164,20 +164,6 @@ class ActiveRecordTest extends DatabaseTest
 		$this->assert_not_equals("Should not stay", $book->name);
 	}
 
-	public function test_active_record_model_home_not_set()
-	{
-		$home = ActiveRecord\Config::instance()->get_model_directory();
-		ActiveRecord\Config::instance()->set_model_directory(__FILE__);
-		$this->assert_equals(false,class_exists('TestAutoload'));
-
-		ActiveRecord\Config::instance()->set_model_directory($home);
-	}
-
-	public function test_auto_load_with_namespaced_model()
-	{
-		$this->assert_true(class_exists('NamespaceTest\Book'));
-	}
-
 	public function test_namespace_gets_stripped_from_table_name()
 	{
 		$model = new NamespaceTest\Book();
