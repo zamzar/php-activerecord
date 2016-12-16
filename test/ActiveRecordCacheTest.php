@@ -12,7 +12,9 @@ class ActiveRecordCacheTest extends DatabaseTest
 		}
 
 		parent::set_up($connection_name);
-		ActiveRecord\Config::instance()->set_cache('memcache://localhost');
+
+		$memcachedHost =  getenv('PHPAR_MEMCACHED') ?: 'localhost';
+		ActiveRecord\Config::instance()->set_cache("memcache://$memcachedHost");
 	}
 
 	public function tear_down()
@@ -28,7 +30,8 @@ class ActiveRecordCacheTest extends DatabaseTest
 
 	public function test_explicit_default_expire()
 	{
-		ActiveRecord\Config::instance()->set_cache('memcache://localhost',array('expire' => 1));
+		$memcachedHost =  getenv('PHPAR_MEMCACHED') ?: 'localhost';
+		ActiveRecord\Config::instance()->set_cache("memcache://$memcachedHost",array('expire' => 1));
 		$this->assert_equals(1,Cache::$options['expire']);
 	}
 

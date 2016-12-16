@@ -11,7 +11,8 @@ class CacheTest extends SnakeCase_PHPUnit_Framework_TestCase
 			return;
 		}
 
-		Cache::initialize('memcache://localhost');
+		$memcachedHost =  getenv('PHPAR_MEMCACHED') ?: 'localhost';
+		Cache::initialize("memcache://$memcachedHost");
 	}
 
 	public function tear_down()
