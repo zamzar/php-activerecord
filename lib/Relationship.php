@@ -96,7 +96,7 @@ abstract class AbstractRelationship implements InterfaceRelationship
 			$this->foreign_key = is_array($this->options['foreign_key']) ? $this->options['foreign_key'] : array($this->options['foreign_key']);
 	}
 
-	protected function get_table()
+	public function get_table()
 	{
 		return Table::load($this->class_name);
 	}
@@ -155,17 +155,9 @@ abstract class AbstractRelationship implements InterfaceRelationship
 
 			$this->set_keys($this->get_table()->class->getName(), true);
 
-			if (!isset($options['class_name'])) {
-				$class = classify($options['through'], true);
-				if (isset($this->options['namespace']) && !class_exists($class))
-					$class = $this->options['namespace'].'\\'.$class;
+			$through_relationship = $table->get_relationship($options['through']);
+			$through_table = $through_relationship->get_table();
 
-				$through_table = $class::table();
-			} else {
-				$class = $options['class_name'];
-				$relation = $class::table()->get_relationship($options['through']);
-				$through_table = $relation->get_table();
-			}
 			$options['joins'] = $this->construct_inner_join_sql($through_table, true);
 
 			$query_key = $this->primary_key[0];

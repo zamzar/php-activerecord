@@ -3,6 +3,7 @@ include 'helpers/foo.php';
 
 use foo\bar\biz\User;
 use foo\bar\biz\Newsletter;
+use foo\bar\biz\Story;
 
 class HasManyThroughTest extends DatabaseTest
 {
@@ -44,7 +45,7 @@ class HasManyThroughTest extends DatabaseTest
 		$this->assert_equals(1, $venue->hosts[0]->id);
 	}
 
-	public function test_gh107_has_many_though_include_eager_with_namespace()
+	public function test_gh107_has_many_through_include_eager_with_namespace()
 	{
 		$user = User::find(1, array(
 			'include' => array(
@@ -55,6 +56,12 @@ class HasManyThroughTest extends DatabaseTest
 		$this->assert_equals(1, $user->id);
 		$this->assert_equals(1, $user->newsletters[0]->id);
 	}
+
+	/**
+	  * @see https://github.com/zamzar/php-activerecord/issues/4
+		*/
+	public function test_has_many_through_does_not_require_bidi_relationship() {
+		$story = Story::find(1, array('include' => array('users')));
+		$this->assertEquals([User::find(1)], $story->users);
+	}
 }
-# vim: noet ts=4 nobinary
-?>

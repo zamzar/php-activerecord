@@ -107,3 +107,13 @@ CREATE TABLE valuestore (
 
 -- reproduces issue GH-96 for testing
 CREATE INDEX user_newsletters_id_and_user_id_idx ON user_newsletters USING btree(id, user_id);
+
+CREATE TABLE stories (
+  id serial primary key
+);
+
+CREATE TABLE news_read_receipts (
+	id serial primary key,
+  user_id int not null,
+	story_id int not null
+);
