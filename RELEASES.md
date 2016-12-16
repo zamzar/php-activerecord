@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.4.3 (16 December 2016)
+* Fixed a further bug in which a has many through relationship of the form A->B->C needlessly required the relationship C->B to be defined [#4](https://github.com/zamzar/php-activerecord/issues/4)
+
 ## v1.3.4 (16 December 2016)
 * Fixed a further bug in which a has many through relationship of the form A->B->C needlessly required the relationship C->B to be defined [#4](https://github.com/zamzar/php-activerecord/issues/4)
 
