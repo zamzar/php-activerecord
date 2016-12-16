@@ -33,7 +33,6 @@ $GLOBALS['slow_tests'] = false;
 // whether or not to show warnings when Log or Memcache is missing
 $GLOBALS['show_warnings'] = true;
 
-
 if (getenv('LOG') !== 'false')
 	DatabaseTest::$log = true;
 
@@ -72,7 +71,7 @@ ActiveRecord\Config::initialize(function($cfg)
 
 	if ($GLOBALS['show_warnings']  && !isset($GLOBALS['show_warnings_done']))
 	{
-		if (!extension_loaded('memcache'))
+		if (!extension_loaded('memcached'))
 			echo "(Cache Tests will be skipped, Memcache not found.)\n";
 	}
 
