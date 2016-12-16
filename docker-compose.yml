@@ -1,0 +1,28 @@
+version: '2'
+services:
+  tests:
+    build: .
+    entrypoint: wait-for-it.sh mysql:3306 --
+    command: vendor/bin/phpunit $PHPUNIT_ARGS
+    environment:
+      - PHPAR_PGSQL=pgsql://phpar:secret@postgres/phpar_test
+      - PHPAR_MYSQL=mysql://phpar:secret@mysql/phpar_test
+      - PHPAR_MEMCACHED=memcached
+    depends_on:
+      - mysql
+      - postgres
+  mysql:
+    image: mysql:5.6
+    environment:
+      - MYSQL_USER=phpar
+      - MYSQL_PASSWORD=secret
+      - MYSQL_DATABASE=phpar_test
+      - MYSQL_ROOT_PASSWORD=secret
+  postgres:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_DB=phpar_test
+      - POSTGRES_USER=phpar
+      - POSTGRES_PASSWORD=secret
+  memcached:
+    image: memcached:1.4
