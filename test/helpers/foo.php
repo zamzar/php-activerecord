@@ -27,7 +27,7 @@ class UserNewsletter extends \ActiveRecord\Model {
 class Story extends \ActiveRecord\Model {
   static $has_many = [
 		['read_receipts', 'class_name' => 'NewsReadReceipt'],
-    ['users', 'through' => 'read_receipts']
+    ['readers', 'class_name' => 'User', 'through' => 'read_receipts']
   ];
 }
 

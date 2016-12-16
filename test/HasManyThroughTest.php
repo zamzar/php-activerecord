@@ -57,11 +57,19 @@ class HasManyThroughTest extends DatabaseTest
 		$this->assert_equals(1, $user->newsletters[0]->id);
 	}
 
+  /**
+   * @see https://github.com/zamzar/php-activerecord/issues/4
+   */
+  public function test_has_many_through_does_not_require_bidi_relationship() {
+    $story = Story::find(1);
+    $this->assertEquals([User::find(1)], $story->readers);
+  }
+
 	/**
-	  * @see https://github.com/zamzar/php-activerecord/issues/4
-		*/
-	public function test_has_many_through_does_not_require_bidi_relationship() {
-		$story = Story::find(1, array('include' => array('users')));
-		$this->assertEquals([User::find(1)], $story->users);
-	}
+   * @see https://github.com/zamzar/php-activerecord/issues/4
+   */
+  public function test_has_many_through_does_not_require_bidi_relationship_eager_load() {
+    $story = Story::find(1, array('include' => array('readers')));
+    $this->assertEquals([User::find(1)], $story->readers);
+  }
 }
