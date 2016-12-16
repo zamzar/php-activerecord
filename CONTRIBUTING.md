@@ -36,8 +36,34 @@ tests, pass the `--verbose` flag to PHPUnit:
 vendor/bin/phpunit --verbose
 ```
 
-Some common steps for fixing skipped tests are to:
+Typically, tests will have been skipped because the development environment does not provide access to all of the dependencies needed to test PHP ActiveRecord. You can either install these dependencies, or use docker to boot up containers that package up the dependencies.
+
+##### Installing dependencies #####
+
+Some common steps for installing dependencies are:
 
 * Install `memcached` and the PHP memcached extension (e.g., `brew install zlib php56-memcached memcached` on macOS)
 * Install the PDO drivers for PostgreSQL (e.g., `brew install php56-pdo-pgsql` on macOS)
 * Create a MySQL database and a PostgreSQL database. You can either create these such that they are available at the default locations of `mysql://test:test@127.0.0.1/test` and `pgsql://test:test@127.0.0.1/test` respectively. Alternatively, you can set the `PHPAR_MYSQL` and `PHPAR_PGSQL` environment variables to specify a different location for the MySQL and PostgreSQL databases.
+
+##### Docker #####
+
+A typical docker workflow involves:
+
+```sh
+./docker-test.sh
+```
+
+If you want to run a subset of all tests:
+
+```
+./docker-test.sh --filter CacheTest
+./docker-test.sh --group slow
+```
+
+Note that changes to the source code of PHP ActiveRecord will be picked up by the `./docker-test.sh` script (as it rebuilds the image of the tests container). However, if you need to change the Docker image or composition, you'll need to destroy the containers before running the tests:
+
+```sh
+docker-composer down
+./docker-test.sh
+```
