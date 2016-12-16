@@ -105,3 +105,13 @@ CREATE TABLE valuestore (
   `key` varchar(20) NOT NULL DEFAULT '',
   `value` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB;
+
+CREATE TABLE stories (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+) ENGINE=InnoDB;
+
+CREATE TABLE news_read_receipts (
+  `user_id` INT NOT NULL,
+	`story_id` INT NOT NULL,
+	PRIMARY KEY(`user_id`, `story_id`)
+) ENGINE=InnoDB;

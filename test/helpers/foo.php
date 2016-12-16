@@ -24,5 +24,16 @@ class UserNewsletter extends \ActiveRecord\Model {
 	);
 }
 
-# vim: ts=4 noet nobinary
-?>
+class Story extends \ActiveRecord\Model {
+  static $has_many = [
+		['read_receipts', 'class_name' => 'NewsReadReceipt'],
+    ['users', 'through' => 'read_receipts']
+  ];
+}
+
+class NewsReadReceipt extends \ActiveRecord\Model {
+  static $belongs_to = [
+    ['story'],
+    ['user']
+  ];
+}

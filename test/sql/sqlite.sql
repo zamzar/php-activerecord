@@ -104,3 +104,13 @@ CREATE TABLE valuestore (
   `key` varchar(20) NOT NULL DEFAULT '',
   `value` varchar(255) NOT NULL DEFAULT ''
 );
+
+CREATE TABLE stories (
+  id INTEGER NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE news_read_receipts (
+	id INTEGER NOT NULL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+	story_id INTEGER NOT NULL
+);
