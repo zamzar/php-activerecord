@@ -1,5 +1,9 @@
 # Release Notes
 
+## v1.3.2 (16 December 2016)
+* Fixed a bug in MySQL date time handling [upstream #412](https://github.com/jpfuentes2/php-activerecord/issues/412)
+* Adds docker configuration to ease testing
+
 ## v1.4.0 (12 December 2016)
 * Removes PHP ActiveRecord's autoloader, as Composer usage is now widespread [#5](https://github.com/zamzar/php-activerecord/issues/5)
 
