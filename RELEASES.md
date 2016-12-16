@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.3.3 (16 December 2016)
+* Fixed a bug in which a has many through relationship of the form A->B->C needlessly required the relationship C->B to be defined [#4](https://github.com/zamzar/php-activerecord/issues/4)
+
 ## v1.3.2 (16 December 2016)
 * Fixed a bug in MySQL date time handling [upstream #412](https://github.com/jpfuentes2/php-activerecord/issues/412)
 * Adds docker configuration to ease testing
