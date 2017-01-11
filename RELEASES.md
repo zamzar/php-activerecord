@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.3.5 (11 January 2017)
+* Fixed a bug that prevented all records from being loaded when eager loading a has many through relationship of the form A->B->C when there was no relationship C->B
+
 ## v1.3.4 (16 December 2016)
 * Fixed a further bug in which a has many through relationship of the form A->B->C needlessly required the relationship C->B to be defined [#4](https://github.com/zamzar/php-activerecord/issues/4)
 
