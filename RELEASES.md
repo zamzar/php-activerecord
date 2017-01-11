@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.4.4 (11 January 2017)
+* Fixed a bug that prevented all records from being loaded when eager loading a has many through relationship of the form A->B->C when there was no relationship C->B
+
 ## v1.3.5 (11 January 2017)
 * Fixed a bug that prevented all records from being loaded when eager loading a has many through relationship of the form A->B->C when there was no relationship C->B
 
