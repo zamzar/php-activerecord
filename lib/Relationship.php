@@ -160,7 +160,7 @@ abstract class AbstractRelationship implements InterfaceRelationship
 
 			$options['joins'] = $this->construct_inner_join_sql($through_table, true);
 
-			$query_key = $this->primary_key[0];
+			$query_key = null;
 
 			// reset keys
 			$this->primary_key = $pk;
@@ -183,7 +183,7 @@ abstract class AbstractRelationship implements InterfaceRelationship
 
 			foreach ($related_models as $related)
 			{
-				if ($related->$query_key == $key_to_match)
+				if (empty($query_key) || $related->$query_key == $key_to_match)
 				{
 					$hash = spl_object_hash($related);
 
