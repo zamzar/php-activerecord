@@ -18,6 +18,7 @@ class Table
 	private static $cache = array();
 
 	public $class;
+	/** @var Connection */
 	public $conn;
 	public $pk;
 	public $last_sql;
@@ -92,16 +93,29 @@ class Table
 
 	public function reestablish_connection($close=true)
 	{
-		// if connection name property is null the connection manager will use the default connection
-		$connection = $this->class->getStaticPropertyValue('connection',null);
-
 		if ($close)
 		{
-			ConnectionManager::drop_connection($connection);
-			static::clear_cache();
+			$this->drop_connection();
 		}
-		return ($this->conn = ConnectionManager::get_connection($connection));
+
+    // if connection name property is null the connection manager will use the default connection
+    $connection = $this->class->getStaticPropertyValue('connection',null);
+
+    return ($this->conn = ConnectionManager::get_connection($connection));
 	}
+
+  public function drop_connection()
+  {
+    // if connection name property is null the connection manager will use the default connection
+    $connection = $this->class->getStaticPropertyValue('connection',null);
+
+    ConnectionManager::drop_connection($connection);
+    static::clear_cache();
+
+    // Clear reference to PDO conn so that PHP will garbage collect and trigger PDO to close DB conn
+    $this->conn->close();
+    $this->conn = null;
+  }
 
 	public function create_joins($joins)
 	{
@@ -183,7 +197,7 @@ class Table
 		}
 
 		if (array_key_exists('order',$options))
-			$sql->order($options['order']);
+ 			$sql->order($options['order']);
 
 		if (array_key_exists('limit',$options))
 			$sql->limit($options['limit']);
