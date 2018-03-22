@@ -89,8 +89,16 @@ class AdapterTest extends DatabaseTest
 		$conn = $this->conn;
 		$port = $conn::$DEFAULT_PORT;
 
-		if ($this->conn->protocol != 'sqlite')
-			ActiveRecord\Connection::instance("{$url['scheme']}://{$url['user']}:{$url['pass']}@{$url['host']}:$port{$url['path']}");
+		// Build the connection string with optional password
+    $connection_string = "{$url['scheme']}://{$url['user']}";
+    if(isset($url['pass'])){
+    	$connection_string = "{$connection_string}:{$url['pass']}";
+    }
+ 		$connection_string = "{$connection_string}@{$url['host']}:$port{$url['path']}";
+
+		if ($this->conn->protocol != 'sqlite') {
+      ActiveRecord\Connection::instance($connection_string);
+    }
 	}
 
 	/**
