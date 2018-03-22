@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.4.5 (22 March 2018)
+* Made it possible to close a DB connection by calling `Table::drop_connection` [#6](https://github.com/zamzar/php-activerecord/pull/6)
+
 ## v1.4.4 (11 January 2017)
 * Fixed a bug that prevented all records from being loaded when eager loading a has many through relationship of the form A->B->C when there was no relationship C->B
 
