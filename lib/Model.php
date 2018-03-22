@@ -732,6 +732,16 @@ class Model
 		return static::table()->reestablish_connection();
 	}
 
+  /**
+   * Drops the database connection.
+   *
+   * @return void
+   */
+  public static function drop_connection()
+  {
+    return static::table()->drop_connection();
+  }
+
 	/**
 	 * Returns the {@link Table} object for this model.
 	 *

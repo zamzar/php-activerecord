@@ -538,6 +538,12 @@ abstract class Connection
 		return false;
 	}
 
+  public function close()
+	{
+    // Clear reference to PDO conn so that PHP will garbage collect and trigger PDO to close DB conn
+    $this->conn = null;
+  }
+
 }
 
 ;

@@ -13,7 +13,7 @@ class ConnectionManager extends Singleton
 {
 	/**
 	 * Array of {@link Connection} objects.
-	 * @var array
+	 * @var Connection[]
 	 */
 	static private $connections = array();
 
@@ -44,7 +44,10 @@ class ConnectionManager extends Singleton
 	public static function drop_connection($name=null)
 	{
 		if (isset(self::$connections[$name]))
-			unset(self::$connections[$name]);
+		{
+			self::$connections[$name]->close();
+      unset(self::$connections[$name]);
+    }
 	}
 }
 
