@@ -576,7 +576,10 @@ class RelationshipTest extends DatabaseTest
 		foreach ($assocs as $assoc)
 		{
 			$this->assert_internal_type('array', $authors[1]->$assoc);
-			$this->assert_true(empty($authors[1]->$assoc));
+			$this->assert_true(
+				empty($authors[1]->$assoc),
+				"Expected \$authors[1]->$assoc to be empty, but got: " . print_r($authors[1]->$assoc, true)
+			);
 		}
 
 		$this->assert_sql_has("WHERE author_id IN(?,?)",ActiveRecord\Table::load('Author')->last_sql);
