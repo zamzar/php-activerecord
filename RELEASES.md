@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.4.6 (26 July 2018)
+* Fixed a bug that prevent reflection on dynamic properties for relationships [#8](https://github.com/zamzar/php-activerecord/issues/8)
+
 ## v1.4.5 (22 March 2018)
 * Made it possible to close a DB connection by calling `Table::drop_connection` [#6](https://github.com/zamzar/php-activerecord/pull/6)
 
