@@ -570,5 +570,30 @@ class ActiveRecordTest extends DatabaseTest
 		$row = Author::query('SELECT COUNT(*) AS n FROM authors WHERE name=?',array('Tito'))->fetch();
 		$this->assert_equals(array('n' => 1), $row);
 	}
+
+	public function test__isset_with_attributes()
+	{
+  		$venue = new Venue();
+  		$this->assert_true($venue->__isset('name'));
+  		$this->assert_false($venue->__isset('attribute_does_not_exist'));
+  }
+
+	public function test__isset_with_aliased_attribute()
+	{
+  		$venue = new Venue();
+  		$this->assert_true($venue->__isset('marquee'));
+  }
+
+	public function test__isset_with_getter_functions()
+	{
+  		$venue = new Venue();
+  		$this->assert_true($venue->__isset('state'));
+  }
+
+	public function test__isset_with_relationships()
+	{
+  		$venue = new Venue();
+  		$this->assert_true($venue->__isset('events'));
+	}
 };
 ?>
