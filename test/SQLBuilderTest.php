@@ -235,7 +235,7 @@ class SQLBuilderTest extends DatabaseTest
 	public function test_create_conditions_from_underscored_string_with_missing_args()
 	{
 		$this->assert_conditions('id=? AND name IS NULL OR z IS NULL',array(1,null),'id_and_name_or_z');
-		$this->assert_conditions('id IS NULL',null,'id');
+		$this->assert_conditions('id IS NULL',array(),'id');
 	}
 
 	public function test_create_conditions_from_underscored_string_with_blank()
