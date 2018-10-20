@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.5.0 (20 October 2018)
+* Adds support for PHP 7.2 [#9](https://github.com/zamzar/php-activerecord/issues/9)
+
 ## v1.4.6 (26 July 2018)
 * Fixed a bug that prevent reflection on dynamic properties for relationships [#8](https://github.com/zamzar/php-activerecord/issues/8)
 
