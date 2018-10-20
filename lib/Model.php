@@ -1572,7 +1572,7 @@ class Model
 		}
 		//find by pk
 		elseif (1 === count($args) && 1 == $num_args)
-			$args = array($args[0]);
+			$args = $args[0];
 
 		// anything left in $args is a find by pk
 		if ($num_args > 0 && !isset($options['conditions']))
@@ -1599,7 +1599,7 @@ class Model
 		$list = static::table()->find($options);
 		$results = count($list);
 
-		if ($results != ($expected = count($values)))
+		if ($results != ($expected = is_array($values) ? count($values) : 1))
 		{
 			$class = get_called_class();
 
