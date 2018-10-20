@@ -161,7 +161,7 @@ class CallBackTest extends DatabaseTest
 
 	public function test_invoke_runs_all_callbacks()
 	{
-		$mock = $this->get_mock('VenueCB',array('after_destroy_one','after_destroy_two'));
+		$mock = $this->create_mock('VenueCB',array('after_destroy_one','after_destroy_two'));
 		$mock->expects($this->once())->method('after_destroy_one');
 		$mock->expects($this->once())->method('after_destroy_two');
 		$this->callback->invoke($mock,'after_destroy');
@@ -188,7 +188,7 @@ class CallBackTest extends DatabaseTest
 	 */
 	public function test_invoke_unregistered_callback()
 	{
-		$mock = $this->get_mock('VenueCB', array('columns'));
+		$mock = $this->create_mock('VenueCB', array('columns'));
 		$this->callback->invoke($mock,'before_validation_on_create');
 	}
 

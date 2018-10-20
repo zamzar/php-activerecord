@@ -78,5 +78,7 @@ class SqliteAdapterTest extends AdapterTest
 
 	// not supported
 	public function test_connect_with_port() {}
+  public function test_query_column_info() {}
+  public function test_query_table_info() {}
 }
 ?>
