@@ -662,14 +662,17 @@ class Model
 	 *
 	 * @param string $name Name of an attribute
 	 * @param array $delegate An array containing delegate data
-	 * @return delegated attribute name or null
+	 * @return mixed delegated attribute name or null
 	 */
 	private function is_delegated($name, &$delegate)
 	{
-		if ($delegate['prefix'] != '')
+		if (!is_array($delegate))
+			return null;
+
+		if (array_key_exists('prefix', $delegate) && $delegate['prefix'] != '')
 			$name = substr($name,strlen($delegate['prefix'])+1);
 
-		if (is_array($delegate) && in_array($name,$delegate['delegate']))
+		if (in_array($name,$delegate['delegate']))
 			return $name;
 
 		return null;
