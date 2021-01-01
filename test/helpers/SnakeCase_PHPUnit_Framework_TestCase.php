@@ -1,5 +1,7 @@
 <?php
-class SnakeCase_PHPUnit_Framework_TestCase extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class SnakeCase_PHPUnit_Framework_TestCase extends TestCase
 {
 	public function __call($meth, $args)
 	{
