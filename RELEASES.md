@@ -1,5 +1,9 @@
 # Release Notes
 
+## v1.6.0 (1 January 2021)
+* Adds support for PHP 7.4
+* Drops support for PHP 7.2
+
 ## v1.5.0 (20 October 2018)
 * Adds support for PHP 7.2 [#9](https://github.com/zamzar/php-activerecord/issues/9)
 
