@@ -1,4 +1,4 @@
-install: composer install --prefer-source --dev
+install: composer install --prefer-source
 
 before_script:
   - echo 'extension = "memcached.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
@@ -14,7 +14,6 @@ env: PHPAR_MYSQL=mysql://root@127.0.0.1/phpar_test PHPAR_PGSQL=pgsql://postgres@
 
 language: php
 php:
-  - 7.2
   - 7.3
   - 7.4
 
