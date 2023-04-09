@@ -15,4 +15,10 @@
             <directory>./test/</directory>
         </testsuite>
     </testsuites>
+    <groups>
+        <exclude>
+            <!-- Zamzar don't use the OCI adapter, and it was never complete anyway -->
+            <group>oci</group>
+        </exclude>
+    </groups>
 </phpunit>

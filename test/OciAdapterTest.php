@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../lib/adapters/OciAdapter.php';
 
+/** @group oci */
 class OciAdapterTest extends AdapterTest
 {
 	public function set_up($connection_name=null)
