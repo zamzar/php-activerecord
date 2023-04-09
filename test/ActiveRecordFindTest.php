@@ -306,13 +306,10 @@ class ActiveRecordFindTest extends DatabaseTest
 
 	public function test_find_with_select_non_selected_fields_should_not_have_attributes()
 	{
+		$this->expectException(ActiveRecord\UndefinedPropertyException::class);
+
 		$author = Author::first(array('select' => 'name, 123 as bubba'));
-		try {
-			$author->id;
-			$this->fail('expected ActiveRecord\UndefinedPropertyExecption');
-		} catch (ActiveRecord\UndefinedPropertyException $e) {
-			;
-		}
+		$author->id;
 	}
 
 	public function test_joins_on_model_with_association_and_explicit_joins()

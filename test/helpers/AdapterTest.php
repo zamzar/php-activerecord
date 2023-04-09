@@ -14,11 +14,8 @@ class AdapterTest extends DatabaseTest
 		parent::set_up($connection_name);
 	}
 
-	public function test_i_has_a_default_port_unless_im_sqlite()
+	public function test_i_have_a_default_port()
 	{
-		if ($this->conn instanceof ActiveRecord\SqliteAdapter)
-			return;
-
 		$c = $this->conn;
 		$this->assert_true($c::$DEFAULT_PORT > 0);
 	}
@@ -76,6 +73,7 @@ class AdapterTest extends DatabaseTest
 		ActiveRecord\Connection::instance("{$this->conn->protocol}://zzz:zzz@127.0.0.1/test");
 	}
 
+	/** @doesNotPerformAssertions */
 	public function test_connect_with_port()
 	{
 		$config = ActiveRecord\Config::instance();
@@ -85,15 +83,15 @@ class AdapterTest extends DatabaseTest
 		$port = $conn::$DEFAULT_PORT;
 
 		// Build the connection string with optional password
-    $connection_string = "{$url['scheme']}://{$url['user']}";
-    if(isset($url['pass'])){
-    	$connection_string = "{$connection_string}:{$url['pass']}";
-    }
+		$connection_string = "{$url['scheme']}://{$url['user']}";
+		if(isset($url['pass'])){
+			$connection_string = "{$connection_string}:{$url['pass']}";
+		}
  		$connection_string = "{$connection_string}@{$url['host']}:$port{$url['path']}";
 
 		if ($this->conn->protocol != 'sqlite') {
-      ActiveRecord\Connection::instance($connection_string);
-    }
+		  ActiveRecord\Connection::instance($connection_string);
+		}
 	}
 
 	public function test_connect_to_invalid_database()
@@ -145,6 +143,8 @@ class AdapterTest extends DatabaseTest
 		{
 			$author_columns = $this->conn->columns('authors');
 			$this->assert_equals('authors_author_id_seq',$author_columns['author_id']->sequence);
+		} else {
+			$this->assert_true(true);
 		}
 	}
 

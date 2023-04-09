@@ -69,8 +69,16 @@ class SqliteAdapterTest extends AdapterTest
 	}
 
 	// not supported
+    /** @doesNotPerformAssertions */
 	public function test_connect_with_port() {}
-  public function test_query_column_info() {}
-  public function test_query_table_info() {}
+
+    /** @doesNotPerformAssertions */
+    public function test_query_column_info() {}
+
+    /** @doesNotPerformAssertions */
+    public function test_query_table_info() {}
+
+    /** @doesNotPerformAssertions */
+    public function test_i_have_a_default_port() {}
 }
 ?>

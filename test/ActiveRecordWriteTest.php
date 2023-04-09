@@ -37,6 +37,7 @@ class ActiveRecordWriteTest extends DatabaseTest
 		return $book;
 	}
 
+    /** @doesNotPerformAssertions */
 	public function test_save()
 	{
 		$venue = new Venue(array('name' => 'Tito'));

@@ -561,17 +561,18 @@ class RelationshipTest extends DatabaseTest
 
 		$assocs = array('books', 'awesome_people');
 
-		foreach ($assocs as $assoc)
-		{
+		foreach ($assocs as $assoc) {
 			// Check author model with id = 1
-			$this->assert_internal_type('array', $authors[0]->$assoc);
-			foreach ($authors[0]->$assoc as $a)
-				$this->assert_equals($authors[0]->author_id,$a->author_id);
+			$this->assert_is_array($authors[0]->$assoc);
+			foreach ($authors[0]->$assoc as $a) {
+				$this->assert_equals($authors[0]->author_id, $a->author_id);
+			}
 
 			// Check author model with id = 2
-      $this->assert_internal_type('array', $authors[1]->$assoc);
-      foreach ($authors[1]->$assoc as $a)
-        $this->assert_equals($authors[1]->author_id,$a->author_id);
+			$this->assert_is_array($authors[1]->$assoc);
+      		foreach ($authors[1]->$assoc as $a) {
+				$this->assert_equals($authors[1]->author_id, $a->author_id);
+			}
 		}
 
 		$this->assert_sql_has("WHERE author_id IN(?,?)",ActiveRecord\Table::load('Author')->last_sql);

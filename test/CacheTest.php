@@ -51,6 +51,7 @@ class CacheTest extends SnakeCase_PHPUnit_Framework_TestCase
 	{
 		$this->cache_get();
 		Cache::get("1337", function() { throw new Exception("I better not execute!"); });
+		$this->assert_true(true);
 	}
 
 	public function test_cache_adapter_returns_false_on_cache_miss()

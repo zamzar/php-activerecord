@@ -163,7 +163,7 @@ class SerializationTest extends DatabaseTest
 
 	public function test_only_method()
 	{
-		$this->assert_contains('<sharks>lasers</sharks>', Author::first()->to_xml(array('only_method' => 'return_something')));
+		$this->assert_string_contains_string('<sharks>lasers</sharks>', Author::first()->to_xml(array('only_method' => 'return_something')));
 	}
 
   public function test_to_csv()

@@ -79,9 +79,10 @@ class CallBackTest extends DatabaseTest
 		$this->assert_has_callback('after_construct');
 	}
 
+    /** @doesNotPerformAssertions */
 	public function test_register_with_closure()
 	{
-		$this->callback->register('after_construct',function($mode) { });
+		$this->callback->register('after_construct', function($mode) { });
 	}
 
 	public function test_register_with_null_definition()
