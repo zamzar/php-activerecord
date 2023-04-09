@@ -14,8 +14,8 @@ env: PHPAR_MYSQL=mysql://root@127.0.0.1/phpar_test PHPAR_PGSQL=pgsql://postgres@
 
 language: php
 php:
-  - 7.3
   - 7.4
+  - 8.0
 
 matrix:
   fast_finish: true
