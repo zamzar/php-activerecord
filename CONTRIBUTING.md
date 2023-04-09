@@ -51,17 +51,18 @@ Some common steps for installing dependencies are:
 A typical docker workflow involves:
 
 ```sh
-./docker-test.sh
+docker compose up -d
+docker compose exec tests vendor/bin/phpunit
 ```
 
 If you want to run a subset of all tests:
 
 ```
-./docker-test.sh --filter CacheTest
-./docker-test.sh --group slow
+docker compose exec tests vendor/bin/phpunit --filter CacheTest
+docker compose exec tests vendor/bin/phpunit --group slow
 ```
 
-Note that changes to the source code of PHP ActiveRecord will be picked up by the `./docker-test.sh` script (as it rebuilds the image of the tests container). However, if you need to change the Docker image or composition, you'll need to destroy the containers before running the tests:
+If you need to change the Docker image or composition, you'll need to destroy the containers before running the tests:
 
 ```sh
 docker-composer down

@@ -1,17 +1,20 @@
-version: '2'
+version: '3'
 services:
   tests:
     build: .
     entrypoint: wait-for-it.sh mysql:3306 --
-    command: vendor/bin/phpunit $PHPUNIT_ARGS
+    command: tail -f /dev/null
     environment:
       - PHPAR_PGSQL=pgsql://phpar:secret@postgres/phpar_test
       - PHPAR_MYSQL=mysql://phpar:secret@mysql/phpar_test
       - PHPAR_MEMCACHED=memcached
+    volumes:
+      - '.:/code'  # mount source code (to reduce rebuilds)
     depends_on:
       - mysql
       - postgres
   mysql:
+    platform: linux/x86_64
     image: mysql:5.6
     environment:
       - MYSQL_USER=phpar
