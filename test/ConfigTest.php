@@ -17,11 +17,9 @@ class ConfigTest extends SnakeCase_PHPUnit_Framework_TestCase
 		$this->config->set_connections($this->connections);
 	}
 
-	/**
-	 * @expectedException ActiveRecord\ConfigException
-	 */
 	public function test_set_connections_must_be_array()
 	{
+		$this->expectException(ConfigException::class);
 		$this->config->set_connections(null);
 	}
 

@@ -35,49 +35,44 @@ class AdapterTest extends DatabaseTest
 		$this->assert_not_null(ActiveRecord\Connection::instance());
 	}
 
-	/**
-	 * @expectedException ActiveRecord\DatabaseException
-	 */
 	public function test_invalid_connection_protocol()
 	{
+		$this->expectException(ActiveRecord\DatabaseException::class);
+
 		ActiveRecord\Connection::instance('terribledb://user:pass@host/db');
 	}
 
-	/**
-	 * @expectedException ActiveRecord\DatabaseException
-	 */
 	public function test_no_host_connection()
 	{
+		$this->expectException(ActiveRecord\DatabaseException::class);
+
 		if (!$GLOBALS['slow_tests'])
 			throw new ActiveRecord\DatabaseException("");
 
 		ActiveRecord\Connection::instance("{$this->conn->protocol}://user:pass");
 	}
 
-	/**
-	 * @expectedException ActiveRecord\DatabaseException
-	 */
 	public function test_connection_failed_invalid_host()
 	{
+		$this->expectException(ActiveRecord\DatabaseException::class);
+
 		if (!$GLOBALS['slow_tests'])
 			throw new ActiveRecord\DatabaseException("");
 
 		ActiveRecord\Connection::instance("{$this->conn->protocol}://user:pass/1.1.1.1/db");
 	}
 
-	/**
-	 * @expectedException ActiveRecord\DatabaseException
-	 */
 	public function test_connection_failed()
 	{
+		$this->expectException(ActiveRecord\DatabaseException::class);
+
 		ActiveRecord\Connection::instance("{$this->conn->protocol}://baduser:badpass@127.0.0.1/db");
 	}
 
-	/**
-	 * @expectedException ActiveRecord\DatabaseException
-	 */
 	public function test_connect_failed()
 	{
+		$this->expectException(ActiveRecord\DatabaseException::class);
+
 		ActiveRecord\Connection::instance("{$this->conn->protocol}://zzz:zzz@127.0.0.1/test");
 	}
 
@@ -101,11 +96,10 @@ class AdapterTest extends DatabaseTest
     }
 	}
 
-	/**
-	 * @expectedException ActiveRecord\DatabaseException
-	 */
 	public function test_connect_to_invalid_database()
 	{
+		$this->expectException(ActiveRecord\DatabaseException::class);
+
 		ActiveRecord\Connection::instance("{$this->conn->protocol}://test:test@127.0.0.1/" . self::InvalidDb);
 	}
 
@@ -194,11 +188,9 @@ class AdapterTest extends DatabaseTest
 		$this->assert_equals('Tito',$row['name']);
 	}
 
-	/**
-	 * @expectedException ActiveRecord\DatabaseException
-	 */
 	public function test_invalid_query()
 	{
+		$this->expectException(ActiveRecord\DatabaseException::class);
 		$this->conn->query('alsdkjfsdf');
 	}
 
