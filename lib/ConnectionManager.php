@@ -51,4 +51,4 @@ class ConnectionManager extends Singleton
 	}
 }
 
-?>
+

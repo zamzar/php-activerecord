@@ -590,4 +590,4 @@ class ActiveRecordTest extends DatabaseTest
   		$this->assert_true($venue->__isset('events'));
 	}
 };
-?>
+

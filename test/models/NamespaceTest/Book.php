@@ -14,4 +14,4 @@ class Book extends \ActiveRecord\Model
 		array('pages_2', 'class_name' => 'SubNamespaceTest\Page'),
 	);
 }
-?>
+

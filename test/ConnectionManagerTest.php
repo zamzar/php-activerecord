@@ -36,4 +36,4 @@ class ConnectionManagerTest extends DatabaseTest
         $this->assert_same($conn_four, $conn_three);
     }
 }
-?>
+

@@ -13,4 +13,4 @@ ActiveRecord\Config::initialize(function($cfg)
 });
 
 print_r(Book::first()->attributes());
-?>
+

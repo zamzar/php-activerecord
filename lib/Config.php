@@ -265,4 +265,4 @@ class Config extends Singleton
 		Cache::initialize($url,$options);
 	}
 };
-?>
+

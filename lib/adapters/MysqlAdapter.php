@@ -98,4 +98,4 @@ class MysqlAdapter extends Connection
 	}
 
 }
-?>
+

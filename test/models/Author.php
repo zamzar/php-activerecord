@@ -26,4 +26,4 @@ class Author extends ActiveRecord\Model
 		return array("sharks" => "lasers");
 	}
 };
-?>
+

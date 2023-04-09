@@ -25,4 +25,3 @@ class InflectorTest extends SnakeCase_PHPUnit_Framework_TestCase
 		$this->assert_equals('building_type_id', $this->inflector->keyify('BuildingType'));
 	}
 };
-?>

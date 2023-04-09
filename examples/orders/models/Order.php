@@ -34,4 +34,4 @@ class Order extends ActiveRecord\Model
 		$this->tax = $this->price * $tax;
 	}
 }
-?>
+

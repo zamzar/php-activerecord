@@ -106,4 +106,3 @@ class ValidatesFormatOfTest extends DatabaseTest
 		$this->assert_equals('is using a custom message.', $book->errors->on('name'));
 	}
 };
-?>

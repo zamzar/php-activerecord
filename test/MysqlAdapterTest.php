@@ -41,4 +41,4 @@ class MysqlAdapterTest extends AdapterTest
 		$this->assert_equals($datetime->getTimestamp(), $roundtrip->getTimestamp());
 	}
 }
-?>
+

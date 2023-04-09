@@ -104,4 +104,4 @@ class UtilsTest extends SnakeCase_PHPUnit_Framework_TestCase
 		$this->assert_equals(array(array('1')),ActiveRecord\wrap_strings_in_arrays($x));
 	}
 };
-?>
+

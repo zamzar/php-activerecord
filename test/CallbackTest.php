@@ -288,4 +288,3 @@ class CallBackTest extends DatabaseTest
 		$this->assert_true(strpos(ActiveRecord\Table::load('VenueCB')->last_sql, 'UPDATE') === false);
 	}
 };
-?>

@@ -81,4 +81,4 @@ class CacheTest extends SnakeCase_PHPUnit_Framework_TestCase
 	  $this->assert_same("abcd", Cache::$adapter->read("myapp::1337"));
 	}
 }
-?>
+

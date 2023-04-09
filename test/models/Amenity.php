@@ -8,4 +8,4 @@ class Amenity extends ActiveRecord\Model
 		'property_amenities'
 	);
 };
-?>
+

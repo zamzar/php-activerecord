@@ -677,4 +677,4 @@ class BelongsTo extends AbstractRelationship
 		return $record;
 	}
 };
-?>
+

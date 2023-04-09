@@ -7,4 +7,4 @@ class Page extends \ActiveRecord\Model
 		array('book', 'class_name' => '\NamespaceTest\Book'),
 	);
 }
-?>
+

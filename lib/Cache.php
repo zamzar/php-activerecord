@@ -77,4 +77,4 @@ class Cache
 		return (isset(static::$options['namespace']) && strlen(static::$options['namespace']) > 0) ? (static::$options['namespace'] . "::") : "";
 	}
 }
-?>
+

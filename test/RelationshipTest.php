@@ -720,4 +720,4 @@ class RelationshipTest extends DatabaseTest
 		Author::find(999999, array('include' => array('books')));
 	}
 };
-?>
+

@@ -15,4 +15,4 @@ class DateFormatTest extends DatabaseTest
 	}
 
 };
-?>
+

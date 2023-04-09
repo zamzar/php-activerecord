@@ -143,4 +143,4 @@ class OciAdapter extends Connection
 		);
 	}
 }
-?>
+

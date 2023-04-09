@@ -44,4 +44,4 @@ class ActiveRecordCacheTest extends DatabaseTest
 		$this->assert_true(is_array($value));
 	}
 }
-?>
+

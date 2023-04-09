@@ -154,4 +154,3 @@ class ValidatesInclusionAndExclusionOfTest extends DatabaseTest
 	}
 
 };
-?>

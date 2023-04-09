@@ -81,4 +81,3 @@ class SqliteAdapterTest extends AdapterTest
     /** @doesNotPerformAssertions */
     public function test_i_have_a_default_port() {}
 }
-?>

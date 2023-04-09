@@ -134,4 +134,3 @@ class RelationshipException extends ActiveRecordException {};
  * @package ActiveRecord
  */
 class HasManyThroughAssociationException extends RelationshipException {};
-?>

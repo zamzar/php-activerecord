@@ -71,4 +71,3 @@ class ValidatesPresenceOfTest extends DatabaseTest
 		$this->assert_true($book->is_valid());
 	}
 };
-?>

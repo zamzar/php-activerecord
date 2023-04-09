@@ -212,4 +212,4 @@ class SerializationTest extends DatabaseTest
     $this->assert_equals("1,1,2,'Ancient Art of Main Tanking',0,0",$book->to_csv());
   }
 };
-?>
+

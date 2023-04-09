@@ -330,4 +330,3 @@ class ValidatesLengthOfTest extends DatabaseTest
 		$this->assert_equals(array("Name is the wrong length (should be 2 characters)"),$book->errors->full_messages());
 	}
 };
-?>

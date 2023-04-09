@@ -196,4 +196,4 @@ class ExpressionsTest extends SnakeCase_PHPUnit_Framework_TestCase
 		$this->assert_equals('id=? AND name IN(?,?)',$a->to_s());
 	}
 }
-?>
+

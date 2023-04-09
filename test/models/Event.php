@@ -11,4 +11,4 @@ class Event extends ActiveRecord\Model
 		array('name', 'to' => 'host', 'prefix' => 'woot')
 	);
 };
-?>
+

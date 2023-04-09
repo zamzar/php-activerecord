@@ -6,4 +6,4 @@ class Host extends ActiveRecord\Model
 		array('venues', 'through' => 'events')
 	);
 }
-?>
+
