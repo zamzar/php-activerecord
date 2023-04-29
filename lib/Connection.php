@@ -11,6 +11,7 @@ require_once 'Column.php';
 use PDO;
 use PDOException;
 use Closure;
+use Psr\Log\LoggerInterface;
 
 /**
  * The base class for database connection adapters.
@@ -31,15 +32,9 @@ abstract class Connection
 	 */
 	public $last_query;
 	/**
-	 * Switch for logging.
-	 *
-	 * @var bool
-	 */
-	private $logging = false;
-	/**
 	 * Contains a Logger object that must impelement a log() method.
 	 *
-	 * @var object
+	 * @var LoggerInterface
 	 */
 	private $logger;
 	/**
@@ -108,10 +103,10 @@ abstract class Connection
 		$fqclass = static::load_adapter_class($info->protocol);
 
 		try {
+            /** @var Connection $connection */
 			$connection = new $fqclass($info);
 			$connection->protocol = $info->protocol;
-			$connection->logging = $config->get_logging();
-			$connection->logger = $connection->logging ? $config->get_logger() : null;
+			$connection->logger = $config->get_logger();
 
 			if (isset($info->charset))
 				$connection->set_encoding($info->charset);
@@ -301,11 +296,7 @@ abstract class Connection
 	 */
 	public function query($sql, &$values=array())
 	{
-		if ($this->logging)
-		{
-			$this->logger->log($sql);
-			if ( $values ) $this->logger->log($values);
-		}
+        $this->logger->debug($sql, compact('values'));
 
 		$this->last_query = $sql;
 

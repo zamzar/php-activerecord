@@ -17,6 +17,10 @@
  *
  **/
 
+use ActiveRecord\Config;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
 require_once 'vendor/autoload.php';
 require_once __DIR__ .'/model_autoloader.php';
 
@@ -36,7 +40,7 @@ $GLOBALS['show_warnings'] = true;
 if (getenv('LOG') !== 'false')
 	DatabaseTest::$log = true;
 
-ActiveRecord\Config::initialize(function($cfg)
+ActiveRecord\Config::initialize(function(Config $cfg)
 {
 	$cfg->set_connections(array(
 		'mysql'  => getenv('PHPAR_MYSQL')  ?: 'mysql://test:test@127.0.0.1/test',
@@ -54,20 +58,9 @@ ActiveRecord\Config::initialize(function($cfg)
 			$GLOBALS['slow_tests'] = true;
 	}
 
-	if (class_exists('Log_file')) // PEAR Log installed
-	{
-		$logger = new Log_file(dirname(__FILE__) . '/../log/query.log','ident',array('mode' => 0664, 'timeFormat' =>  '%Y-%m-%d %H:%M:%S'));
-
-		$cfg->set_logging(true);
-		$cfg->set_logger($logger);
-	}
-	else
-	{
-		if ($GLOBALS['show_warnings'] && !isset($GLOBALS['show_warnings_done']))
-			echo "(Logging SQL queries disabled, PEAR::Log not found.)\n";
-
-		DatabaseTest::$log = false;
-	}
+    $logger = new Logger('tests');
+    $logger->pushHandler(new StreamHandler(dirname(__FILE__) . '/../log/query.log', Logger::DEBUG));
+    $cfg->set_logger($logger);
 
 	if ($GLOBALS['show_warnings']  && !isset($GLOBALS['show_warnings_done']))
 	{

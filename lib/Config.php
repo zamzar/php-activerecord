@@ -4,6 +4,7 @@
  */
 namespace ActiveRecord;
 use Closure;
+use Psr\Log\LoggerInterface;
 
 /**
  * Manages configuration options for ActiveRecord.
@@ -50,16 +51,9 @@ class Config extends Singleton
 	private $connections = array();
 
 	/**
-	 * Switch for logging.
-	 *
-	 * @var bool
-	 */
-	private $logging = false;
-
-	/**
 	 * Contains a Logger object that must implement a log() method.
 	 *
-	 * @var object
+	 * @var LoggerInterface
 	 */
 	private $logger;
 
@@ -179,47 +173,20 @@ class Config extends Singleton
 	}
 
 	/**
-	 * Turn on/off logging
-	 *
-	 * @param boolean $bool
-	 * @return void
-	 */
-	public function set_logging($bool)
-	{
-		$this->logging = (bool)$bool;
-	}
-
-	/**
 	 * Sets the logger object for future SQL logging
 	 *
-	 * @param object $logger
+	 * @param LoggerInterface $logger
 	 * @return void
-	 * @throws ConfigException if Logger object does not implement public log()
 	 */
-	public function set_logger($logger)
+	public function set_logger(LoggerInterface $logger)
 	{
-		$klass = Reflections::instance()->add($logger)->get($logger);
-
-		if (!$klass->getMethod('log') || !$klass->getMethod('log')->isPublic())
-			throw new ConfigException("Logger object must implement a public log method");
-
 		$this->logger = $logger;
-	}
-
-	/**
-	 * Return whether or not logging is on
-	 *
-	 * @return boolean
-	 */
-	public function get_logging()
-	{
-		return $this->logging;
 	}
 
 	/**
 	 * Returns the logger
 	 *
-	 * @return object
+	 * @return LoggerInterface
 	 */
 	public function get_logger()
 	{
