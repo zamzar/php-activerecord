@@ -1,4 +1,6 @@
-FROM php:7.4-cli
+ARG PHP_VERSION=7.4
+
+FROM php:$PHP_VERSION-cli
 
 # Get latest packages
 RUN apt-get -qqy update
