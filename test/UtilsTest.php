@@ -4,6 +4,12 @@ use ActiveRecord as AR;
 
 class UtilsTest extends SnakeCase_PHPUnit_Framework_TestCase
 {
+    /** @var array */
+    private $object_array;
+
+    /** @var array */
+    private $array_hash;
+
 	public function set_up()
 	{
 		$this->object_array = array(null,null);
@@ -16,7 +22,8 @@ class UtilsTest extends SnakeCase_PHPUnit_Framework_TestCase
 
 		$this->array_hash = array(
 			array("a" => "0a", "b" => "0b"),
-			array("a" => "1a", "b" => "1b"));
+			array("a" => "1a", "b" => "1b")
+        );
 	}
 
 	public function test_collect_with_array_of_objects_using_closure()

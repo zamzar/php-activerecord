@@ -181,8 +181,8 @@ class SQLBuilder
 	 * Reverses an order clause.
 	 */
 	public static function reverse_order($order)
-	{
-		if (!trim($order))
+    {
+		if (!trim($order ?? ""))
 			return $order;
 
 		$parts = explode(',',$order);
@@ -388,7 +388,7 @@ class SQLBuilder
 
 	private function build_update()
 	{
-		if (strlen($this->update) > 0)
+		if ($this->update)
 			$set = $this->update;
 		else
 			$set = join('=?, ', $this->quoted_key_names()) . '=?';

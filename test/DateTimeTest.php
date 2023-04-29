@@ -4,6 +4,12 @@ use ActiveRecord\DatabaseException;
 
 class DateTimeTest extends SnakeCase_PHPUnit_Framework_TestCase
 {
+    /** @var DateTime */
+    private $date;
+
+    /** @var string */
+    private $original_format;
+
 	public function set_up()
 	{
 		$this->date = new DateTime();

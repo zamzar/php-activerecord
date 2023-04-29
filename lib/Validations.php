@@ -12,6 +12,8 @@ namespace ActiveRecord;
 use ActiveRecord\Model;
 use IteratorAggregate;
 use ArrayIterator;
+use ReflectionClass;
+use Traversable;
 
 /**
  * Manages validations for a {@link Model}.
@@ -45,6 +47,9 @@ class Validations
 	private $options = array();
 	private $validators = array();
 	private $record;
+
+    /** @var ReflectionClass|null */
+    private $klass;
 
 	private static $VALIDATION_FUNCTIONS = array(
 		'validates_presence_of',
@@ -265,13 +270,13 @@ class Validations
 			if (!is_array($enum))
 				array($enum);
 
-			$message = str_replace('%s', $var, $options['message']);
-
 			if ($this->is_null_with_option($var, $options) || $this->is_blank_with_option($var, $options))
 				continue;
 
-			if (('inclusion' == $type && !in_array($var, $enum)) || ('exclusion' == $type && in_array($var, $enum)))
-				$this->record->add($attribute, $message);
+			if (('inclusion' == $type && !in_array($var, $enum)) || ('exclusion' == $type && in_array($var, $enum))) {
+                $message = str_replace('%s', $var, $options['message']);
+                $this->record->add($attribute, $message);
+            }
 		}
 	}
 
@@ -521,7 +526,7 @@ class Validations
 
 					$message = str_replace('%d', $option, $message);
 					$attribute_value = $this->model->$attribute;
-					$len = strlen($attribute_value);
+					$len = is_null($attribute_value) ? 0 : strlen($attribute_value);
 					$value = (int)$attr[$range_option];
 
 					if ('maximum' == $range_option && $len > $value)
@@ -904,7 +909,7 @@ class Errors implements IteratorAggregate
 	 *
 	 * @return ArrayIterator
 	 */
-	public function getIterator()
+	public function getIterator(): Traversable
 	{
 		return new ArrayIterator($this->full_messages());
 	}

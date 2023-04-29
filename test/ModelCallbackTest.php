@@ -1,7 +1,15 @@
 <?php
 
+use ActiveRecord\CallBack;
+
 class ModelCallbackTest extends DatabaseTest
 {
+    /** @var Venue */
+    private $venue;
+
+    /** @var CallBack */
+    private $callback;
+
 	public function set_up($connection_name=null)
 	{
 		parent::set_up($connection_name);

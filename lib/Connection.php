@@ -83,7 +83,7 @@ abstract class Connection
 	 * @return Connection
 	 * @see parse_connection_url
 	 */
-	public static function instance($connection_string_or_connection_name=null)
+	public static function instance(string $connection_string_or_connection_name = "")
 	{
 		$config = Config::instance();
 

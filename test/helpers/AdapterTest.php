@@ -25,9 +25,8 @@ class AdapterTest extends DatabaseTest
 		$this->assert_not_null($this->conn->protocol);
 	}
 
-	public function test_null_connection_string_uses_default_connection()
+	public function test_empty_connection_string_uses_default_connection()
 	{
-		$this->assert_not_null(ActiveRecord\Connection::instance(null));
 		$this->assert_not_null(ActiveRecord\Connection::instance(''));
 		$this->assert_not_null(ActiveRecord\Connection::instance());
 	}

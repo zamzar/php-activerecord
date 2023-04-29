@@ -10,6 +10,12 @@ class TestLogger
 
 class ConfigTest extends SnakeCase_PHPUnit_Framework_TestCase
 {
+    /** @var Config */
+    private $config;
+
+    /** @var array */
+    private $connections;
+
 	public function set_up()
 	{
 		$this->config = new Config();

@@ -438,7 +438,10 @@ class HasMany extends AbstractRelationship
 	private $has_one = false;
 	private $through;
 
-	/**
+    /** @var bool */
+    private $initialized;
+
+    /**
 	 * Constructs a {@link HasMany} relationship.
 	 *
 	 * @param array $options Options for the association
@@ -625,6 +628,9 @@ class HasAndBelongsToMany extends AbstractRelationship
  */
 class BelongsTo extends AbstractRelationship
 {
+    /** @var array */
+    private $primary_key_cache;
+
 	public function __construct($options=array())
 	{
 		parent::__construct($options);
@@ -639,8 +645,8 @@ class BelongsTo extends AbstractRelationship
 
 	public function __get($name)
 	{
-		if($name === 'primary_key' && !isset($this->primary_key)) {
-			$this->primary_key = array(Table::load($this->class_name)->pk[0]);
+		if ($name === 'primary_key') {
+			return $this->primary_key_cache = $this->primary_key_cache ?? array(Table::load($this->class_name)->pk[0]);
 		}
 
 		return $this->$name;
