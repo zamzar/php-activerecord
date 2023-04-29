@@ -1,5 +1,9 @@
 # Release Notes
 
+## v1.7.0 (29 April 2023)
+* Adds support for PHP 8.0, 8.1 and 8.2
+* Drops support for PHP 7.3
+
 ## v1.6.0 (1 January 2021)
 * Adds support for PHP 7.4
 * Drops support for PHP 7.2
