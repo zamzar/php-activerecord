@@ -1,0 +1,7 @@
+# Example docker-compose overrides for local development.
+# Copy this file to .docker-composer.override.yml and then customise as described below.
+version: '3'
+services:
+  tests:
+    volumes:
+      - '.:/code'  # mount source code (to reduce rebuilds)

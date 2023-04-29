@@ -11,8 +11,6 @@ services:
       - PHPAR_PGSQL=pgsql://phpar:secret@postgres/phpar_test
       - PHPAR_MYSQL=mysql://phpar:secret@mysql/phpar_test
       - PHPAR_MEMCACHED=memcached
-    volumes:
-      - '.:/code'  # mount source code (to reduce rebuilds)
     depends_on:
       - mysql
       - postgres
