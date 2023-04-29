@@ -57,7 +57,7 @@ class Config extends Singleton
 	private $logging = false;
 
 	/**
-	 * Contains a Logger object that must impelement a log() method.
+	 * Contains a Logger object that must implement a log() method.
 	 *
 	 * @var object
 	 */
@@ -194,7 +194,7 @@ class Config extends Singleton
 	 *
 	 * @param object $logger
 	 * @return void
-	 * @throws ConfigException if Logger objecct does not implement public log()
+	 * @throws ConfigException if Logger object does not implement public log()
 	 */
 	public function set_logger($logger)
 	{
