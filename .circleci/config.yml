@@ -1,0 +1,52 @@
+version: 2.1
+
+jobs:
+  test:
+    parameters:
+      php-version:
+        type: string
+    docker:
+      - image: cimg/base:2021.04
+        auth:
+          username: zamzar
+          password: $DOCKER_PASSWORD
+        environment:
+          DOCKER_BUILDKIT=1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.6
+          docker_layer_caching: true
+      - run:
+          name: Build docker image
+          command: docker-compose build --progress plain --build-arg PHP_VERSION=<< parameters.php-version >>
+      - run:
+          name: Start services
+          command: |
+            docker-compose up -d
+      - run:
+          name: Run tests
+          no_output_timeout: 5m
+          command: |
+            docker-compose exec tests vendor/bin/phpunit --colors=always --log-junit junit.xml
+      - run:
+          name: Grab logs
+          command: |
+            mkdir -p storage/logs
+            mkdir -p storage/test-results
+            docker-compose logs > storage/logs/docker-compose.log
+            docker cp project_tests_1:/code/junit.xml storage/test-results/junit.xml
+          when: always
+      - store_test_results:
+          path: storage/test-results
+      - store_artifacts:
+          path: storage
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test:
+          matrix:
+            parameters:
+              php-version: [ "7.4", "8.0" ]
