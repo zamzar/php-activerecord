@@ -1,7 +1,10 @@
 version: '3'
 services:
   tests:
-    build: .
+    build:
+      context: .
+      args:
+        - PHP_VERSION=7.4
     entrypoint: wait-for-it.sh mysql:3306 --
     command: tail -f /dev/null
     environment:
