@@ -23,11 +23,7 @@ class DateTimeTest extends SnakeCase_PHPUnit_Framework_TestCase
 
 	private function assert_dirtifies($method /*, method params, ...*/)
 	{
-		try {
-			$model = new Author();
-		} catch (DatabaseException $e) {
-			$this->mark_test_skipped('failed to connect. '.$e->getMessage());
-		}
+		$model = new Author();
 		$datetime = new DateTime();
 		$datetime->attribute_of($model,'some_date');
 
