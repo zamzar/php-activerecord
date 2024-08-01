@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.7.1 (1 August 2024)
+* Various dev improvements [#13](https://github.com/zamzar/php-activerecord/pull/13)
+
 ## v1.7.0 (29 April 2023)
 * Adds support for PHP 8.0, 8.1 and 8.2
 * Drops support for PHP 7.3
