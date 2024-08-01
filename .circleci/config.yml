@@ -25,6 +25,11 @@ jobs:
           command: |
             docker-compose up -d
       - run:
+          name: Check language compatibility
+          no_output_timeout: 5m
+          command: |
+            docker-compose exec tests composer run check-compatibility
+      - run:
           name: Run tests
           no_output_timeout: 5m
           command: |

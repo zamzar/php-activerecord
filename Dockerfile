@@ -35,13 +35,7 @@ RUN apt-get -qqy install unzip \
         && php -r "unlink('composer-setup.php');"
 
 # Install composer dependencies
-# NB: add only composer files from the source tree at this point, as docker
-# appears to rebuild the image automatically if an added file changes
 RUN mkdir /code
-ADD composer.* /code/
+ADD . /code
 WORKDIR /code
 RUN composer install
-
-# Add full source tree to container, so that we can run tests.
-# NB: doing this last avoids rerunning earlier steps each time we run tests
-ADD . /code

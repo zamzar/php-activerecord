@@ -9,7 +9,7 @@ Run the tests with Docker:
 
 ```sh
 docker compose up -d
-docker compose exec tests vendor/bin/phpunit
+docker compose exec tests composer run test
 ```
 
 If you want to run a subset of all tests:
@@ -26,7 +26,18 @@ First rebuild the Docker image with the desired version of PHP:
 ```sh
 docker compose build --build-arg PHP_VERSION=8.1
 docker compose up -d
-docker compose exec tests vendor/bin/phpunit
+
+Then run the tests:
+
+```sh
+docker compose exec tests composer run test
+```
+
+You can check compatibility via static analysis by updating `composer.json` (see `scripts.check-compatibility`) and 
+then running:
+
+```sh
+docker compose exec tests composer run check-compatibility
 ```
 
 #### Skipped Tests ####
