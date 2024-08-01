@@ -23,6 +23,6 @@
         "check-compatibility": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4-8.0 lib test",
         "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
         "post-update-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
-        "test": "phpunit --testdox --colors=always"
+        "test": "phpunit --testdox --colors=always --log-junit junit.xml"
     }
 }

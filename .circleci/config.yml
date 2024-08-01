@@ -33,7 +33,7 @@ jobs:
           name: Run tests
           no_output_timeout: 5m
           command: |
-            docker-compose exec tests vendor/bin/phpunit --colors=always --log-junit junit.xml
+            docker-compose exec tests composer run test
       - run:
           name: Grab logs
           command: |
