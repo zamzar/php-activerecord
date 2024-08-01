@@ -24,6 +24,8 @@ jobs:
           name: Start services
           command: |
             docker-compose up -d
+            docker-compose ps
+            sleep 10  # Even with health checks there seems to be a race condition => wait a bit for services to start
       - run:
           name: Check language compatibility
           no_output_timeout: 5m
