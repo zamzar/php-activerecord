@@ -16,11 +16,7 @@ class ColumnTest extends SnakeCase_PHPUnit_Framework_TestCase
 	public function set_up()
 	{
 		$this->column = new Column();
-		try {
-			$this->conn = ActiveRecord\ConnectionManager::get_connection(ActiveRecord\Config::instance()->get_default_connection());
-		} catch (DatabaseException $e) {
-			$this->mark_test_skipped('failed to connect using default connection. '.$e->getMessage());
-		}
+        $this->conn = ActiveRecord\ConnectionManager::get_connection(ActiveRecord\Config::instance()->get_default_connection());
 	}
 
 	public function assert_mapped_type($type, $raw_type)
